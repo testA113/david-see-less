@@ -4,45 +4,24 @@
  * This is the primary JS file that manages the detection and filtration of words from the web page.
  */
 
-var xpathPatterns = [];
-
-chrome.storage.sync.get(
-  {
-    blacklist: "seymour",
-  },
-  function (items) {
-    badWords = items.blacklist.toLowerCase().split(/\r?\n/);
-    for (var i = 0; i < badWords.length; i++) {
-      var word = badWords[i];
-      xpathPatterns.push(
-        [
-          "//body//*[not(self::script or self::style)]/text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" +
-            word +
-            "')]",
-          word,
-        ],
-        [
-          "//body//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" +
-            word +
-            "')]",
-          word,
-        ],
-        [
-          "//body//img[contains(translate(@src, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" +
-            word +
-            "')]",
-          word,
-        ],
-        [
-          "//body//img[contains(translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'" +
-            word +
-            "')]",
-          word,
-        ]
-      );
-    }
-  }
-);
+var xpathPatterns = [
+  [
+    "//body//*[not(self::script or self::style)]/text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'seymour')]",
+    "seymour",
+  ],
+  [
+    "//body//a[contains(translate(@href, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'seymour')]",
+    "seymour",
+  ],
+  [
+    "//body//img[contains(translate(@src, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'seymour')]",
+    "seymour",
+  ],
+  [
+    "//body//img[contains(translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'seymour')]",
+    "seymour",
+  ],
+];
 
 function filterNodes() {
   let nodes = [];

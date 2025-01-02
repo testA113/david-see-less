@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "David See-Less",
   "version": "1.0",
   "description": "David See-Less blocks all David Seymour content from your browser for enjoyable reading again.",
@@ -7,7 +7,7 @@
     "default_icon": "images/icon-19x19.png",
     "default_title": "David See-Less"
   },
-  "permissions": ["tabs", "storage"],
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
