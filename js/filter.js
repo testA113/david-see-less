@@ -222,9 +222,13 @@ window.addEventListener("load", function () {
 
 setTimeout(filterNodes, 200);
 setTimeout(filterNodes, 500);
-setTimeout(filterNodes, 1000);
 setInterval(filterNodes, 2000);
 
+let scrollTimeout;
 window.addEventListener("scroll", function () {
-  filterNodes();
+  if (scrollTimeout) return;
+  scrollTimeout = setTimeout(function () {
+    scrollTimeout = null;
+    filterNodes();
+  }, 200);
 });
