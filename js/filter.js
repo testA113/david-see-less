@@ -188,6 +188,19 @@ function findNearestParent(node) {
       }
       return null;
     },
+    newstalkzb: (node) => {
+      let element = node;
+      while (element) {
+        if (
+          element.parentNode?.tagName === "ARTICLE" ||
+          node.parentNode.tagName === "P"
+        ) {
+          return element.parentNode;
+        }
+        element = element.parentNode;
+      }
+      return null;
+    },
   };
 
   const hostname = window.location.hostname;
