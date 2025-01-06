@@ -7,7 +7,7 @@
     "default_icon": "images/icon-19x19.png",
     "default_title": "David See-Less"
   },
-  "permissions": ["activeTab"],
+  "permissions": [],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
